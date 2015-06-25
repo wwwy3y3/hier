@@ -1,6 +1,6 @@
 {
   "name": "store",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "provide hierarchical read from different stores",
   "main": "index.js",
   "scripts": {
