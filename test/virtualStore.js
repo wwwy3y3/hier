@@ -1,5 +1,5 @@
-var store= require('../');
-var Store= store.interface;
+var hier= require('../');
+var Store= hier.interface;
 var util= require('util');
 var Q= require('q');
 

@@ -1,9 +1,9 @@
-# store
+# Hier
 provide hierarchical read from different data resources, e.g, db, cache, file system...
 
 ``` javascript
 // hierarchical read from memoryStore, fileStore
-store.chain([ memoryStore, fileStore ]).read('key').then(function(value){
+hier.chain([ memoryStore, fileStore ]).read('key').then(function(value){
 	// ...
 })
 ```
@@ -15,8 +15,8 @@ every get/set value operations in this module, rely on this `Store interface`
 so if you want to create your own `Store class`, be sure to inherit fron `Store`
 #### example
 ``` javascript
-var store= require('../');
-var Store= store.interface;
+var hier= require('../');
+var Store= hier.interface;
 var util= require('util');
 var Q= require('q');
 
@@ -54,7 +54,7 @@ hierarchical read from `memoryStore`, `fileStore`
 read `key` in order from `memoryStore`, `fileStore`
 
 ``` javascript
-store.chain([ memoryStore, fileStore ]).read('key')
+hier.chain([ memoryStore, fileStore ]).read('key')
 	.then(function (value) {
 		//...
 	})

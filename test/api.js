@@ -1,4 +1,4 @@
-var store= require('../');
+var hier= require('../');
 var Q= require('q');
 var FileStore= require('./fileStore');
 var MemoryStore= require('../lib/memoryStore');
@@ -64,7 +64,7 @@ describe('api', function () {
 
 	describe('#chain', function () {
 		it('should get value from memoryStore', function () {
-			return store.chain([ memoryStore, fileStore ]).read('where')
+			return hier.chain([ memoryStore, fileStore ]).read('where')
 			.then(function (value) {
 				value.should.equal('memory');
 			})
@@ -73,7 +73,7 @@ describe('api', function () {
 
 		it('should get value from fileStore', function () {
 			// mvp value only exist in fileStore
-			return store.chain([ memoryStore, fileStore ]).read('mvp')
+			return hier.chain([ memoryStore, fileStore ]).read('mvp')
 			.then(function (value) {
 				(memoryStore.get('mvp') === null).should.be.true;
 				value.should.equal('curry');
@@ -83,7 +83,7 @@ describe('api', function () {
 
 		it('should cache values in stores under opts.writeMissing', function () {
 			var opts= { writeMissing: true };
-			return store.chain([ memoryStore, otherMemoryStore, fileStore ])
+			return hier.chain([ memoryStore, otherMemoryStore, fileStore ])
 			.read('mvp', opts)
 			.then(function (value) {
 				value.should.equal('curry');
@@ -103,7 +103,7 @@ describe('api', function () {
 					done();
 				}
 			};
-			return store.chain([ memoryStore, otherMemoryStore, virtualStore, fileStore ])
+			return hier.chain([ memoryStore, otherMemoryStore, virtualStore, fileStore ])
 			.read('fmvp', opts)
 			.then(function (value) {
 				value.should.equal('iggy');
