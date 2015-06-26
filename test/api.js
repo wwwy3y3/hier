@@ -5,6 +5,7 @@ var MemoryStore= require('../lib/memoryStore');
 var VirtualStore= require('./virtualStore');
 var path= require('path');
 var should= require('should');
+var fs= require('fs');
 
 describe('api', function () {
 	var filePath= path.resolve(__dirname, 'store.json');
@@ -15,6 +16,9 @@ describe('api', function () {
 
 	before(function() {
 		// clear the store.json first
+		// check if storing file exist
+		var bool= fs.existsSync(filePath);
+		if(!bool) fs.writeFileSync(filePath, '');
 		return fileStore.drop()
 		.then(function () {
 			return fileStore.set({ mvp: 'curry', fmvp: 'iggy' });
