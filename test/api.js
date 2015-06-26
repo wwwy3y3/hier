@@ -12,10 +12,14 @@ var memoryStore= new MemoryStore();
 // set values
 memoryStore.set('player', 'mj');
 fileStore.set('player', 'frank')
+.then(function () {
+	return fileStore.set('pg', 'cp3')
+})
 
 .then(function () {
 	// chain of read
-	return store.chain([ memoryStore, fileStore ]).read('player')
+	var opts= { writeMissing: true };
+	return store.chain([ memoryStore, fileStore ]).read('pg', opts)
 })
 
 .then(console.log).catch(console.error)
