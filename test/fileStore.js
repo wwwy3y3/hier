@@ -3,6 +3,7 @@ var Store= store.interface;
 var util= require('util');
 var fs= require('fs');
 var FS= require('q-io/fs');
+var _= require('lodash');
 
 var FileStore= function (filePath) {
 	var self= this;
@@ -32,7 +33,11 @@ FileStore.prototype.set = function(key, value) {
 		var store= JSON.parse(content);
 
 	// set value
-	store[key]= value;
+	if(_.isString(key))
+		store[key]= value;
+	else if(_.isPlainObject(key)){
+		store= _.merge(store, key);
+	}
 	return FS.write(self.filePath, JSON.stringify(store));
 };
 

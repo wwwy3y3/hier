@@ -15,7 +15,7 @@ describe('api', function () {
 		// clear the store.json first
 		return fileStore.drop()
 		.then(function () {
-			return fileStore.set('mvp', 'curry')
+			return fileStore.set({ mvp: 'curry', fmvp: 'iggy' });
 		})
 	})
 
@@ -81,5 +81,7 @@ describe('api', function () {
 				otherMemoryStore.get('mvp').should.equal('curry');
 			})
 		})
+
+		
 	})
 })

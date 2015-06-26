@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/wwwy3y3/store#readme",
   "devDependencies": {
+    "lodash": "^3.9.3",
     "q-io": "^1.13.1",
     "should": "^7.0.1"
   },
