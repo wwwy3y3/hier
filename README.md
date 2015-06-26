@@ -1,4 +1,6 @@
 # Hier
+[![Build Status](https://travis-ci.org/wwwy3y3/hier.svg?branch=master)](https://travis-ci.org/wwwy3y3/hier)
+
 provide hierarchical read from different data resources, e.g, db, cache, file system...
 
 ``` javascript
