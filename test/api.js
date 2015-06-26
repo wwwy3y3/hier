@@ -6,6 +6,7 @@ var VirtualStore= require('./virtualStore');
 var path= require('path');
 var should= require('should');
 var fs= require('fs');
+var _= require('lodash');
 
 describe('api', function () {
 	var filePath= path.resolve(__dirname, 'store.json');
@@ -23,6 +24,7 @@ describe('api', function () {
 		.then(function () {
 			return fileStore.set({ mvp: 'curry', fmvp: 'iggy' });
 		})
+		.catch(console.error)
 	})
 
 	describe('#MemoryStore', function () {
@@ -48,6 +50,7 @@ describe('api', function () {
 			.then(function (value) {
 				value.should.equal('file');
 			})
+			.catch(console.error)
 		})
 
 		it('should get value', function () {
@@ -55,6 +58,7 @@ describe('api', function () {
 			.then(function (value) {
 				value.should.equal('file');
 			})
+			.catch(console.error)
 		})
 	})
 
@@ -64,6 +68,7 @@ describe('api', function () {
 			.then(function (value) {
 				value.should.equal('memory');
 			})
+			.catch(console.error)
 		})
 
 		it('should get value from fileStore', function () {
@@ -73,6 +78,7 @@ describe('api', function () {
 				(memoryStore.get('mvp') === null).should.be.true;
 				value.should.equal('curry');
 			})
+			.catch(console.error)
 		})
 
 		it('should cache values in stores under opts.writeMissing', function () {
@@ -86,6 +92,7 @@ describe('api', function () {
 				memoryStore.get('mvp').should.equal('curry');
 				otherMemoryStore.get('mvp').should.equal('curry');
 			})
+			.catch(console.error)
 		})
 
 		it('should cache values async using opts.writeCb', function (done) {
@@ -109,6 +116,7 @@ describe('api', function () {
 				// fmvp should be null
 				(_.isUndefined(virtualStore.stores.fmvp)).should.be.true;
 			})
+			.catch(console.error)
 		})
 	})
 })
