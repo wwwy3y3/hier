@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "hier",
   "version": "0.0.1",
   "description": "provide hierarchical read from different stores",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wwwy3y3/store.git"
+    "url": "git+https://github.com/wwwy3y3/hier.git"
   },
   "keywords": [
     "fs",
@@ -18,9 +18,9 @@
   "author": "wwwy3y3",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wwwy3y3/store/issues"
+    "url": "https://github.com/wwwy3y3/hier/issues"
   },
-  "homepage": "https://github.com/wwwy3y3/store#readme",
+  "homepage": "https://github.com/wwwy3y3/hier#readme",
   "devDependencies": {
     "lodash": "^3.9.3",
     "q-io": "^1.13.1",
