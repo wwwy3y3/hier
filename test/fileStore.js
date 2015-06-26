@@ -49,4 +49,9 @@ FileStore.prototype.destroy = function(key) {
 	return FS.write(self.filePath, JSON.stringify(store));
 };
 
+FileStore.prototype.drop = function() {
+	var self= this;
+	return FS.write(self.filePath, '');
+};
+
 module.exports= FileStore;
