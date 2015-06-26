@@ -2,6 +2,7 @@ var store= require('../');
 var Q= require('q');
 var FileStore= require('./fileStore');
 var MemoryStore= require('../lib/memoryStore');
+var VirtualStore= require('./virtualStore');
 var path= require('path');
 var should= require('should');
 
@@ -10,6 +11,7 @@ describe('api', function () {
 	var fileStore= new FileStore(filePath);
 	var memoryStore= new MemoryStore();
 	var otherMemoryStore= new MemoryStore();
+	var virtualStore= new VirtualStore();
 
 	before(function() {
 		// clear the store.json first
@@ -82,6 +84,27 @@ describe('api', function () {
 			})
 		})
 
-		
+		it('should cache values async using opts.writeCb', function (done) {
+			var opts= { 
+				writeMissing: true,
+				writeCb: function (result) {
+					virtualStore.stores.fmvp.should.equal('iggy');
+					done();
+				}
+			};
+			return store.chain([ memoryStore, otherMemoryStore, virtualStore, fileStore ])
+			.read('fmvp', opts)
+			.then(function (value) {
+				value.should.equal('iggy');
+
+				// cache
+				memoryStore.get('fmvp').should.equal('iggy');
+				otherMemoryStore.get('fmvp').should.equal('iggy');
+
+				// see virtualStore, since the callback is delayed
+				// fmvp should be null
+				(_.isUndefined(virtualStore.stores.fmvp)).should.be.true;
+			})
+		})
 	})
 })
