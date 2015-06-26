@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/wwwy3y3/store/issues"
   },
-  "homepage": "https://github.com/wwwy3y3/store#readme"
+  "homepage": "https://github.com/wwwy3y3/store#readme",
+  "devDependencies": {
+    "q-io": "^1.13.1"
+  },
+  "dependencies": {
+    "q": "^1.4.1"
+  }
 }
