@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/wwwy3y3/store#readme",
   "devDependencies": {
-    "q-io": "^1.13.1"
+    "q-io": "^1.13.1",
+    "should": "^7.0.1"
   },
   "dependencies": {
     "q": "^1.4.1"
