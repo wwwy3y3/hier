@@ -118,5 +118,40 @@ describe('api', function () {
 			})
 			.catch(console.error)
 		})
+
+
+		it('should cache values async using opts.writeCb and use custom get fn', function (done) {
+			var opts= { 
+				writeMissing: true,
+				writeCb: function (result) {
+					virtualStore.stores.sas.should.equal('spurs');
+					done();
+				}
+			};
+			var dbGet= function (key) {
+				var obj= {
+					sas: 'spurs'
+				}
+				return obj[key];
+			}
+			var otherGet= function (key) {
+				var obj= {}
+				return obj[key];
+			}
+			return hier.chain([ memoryStore, otherMemoryStore, virtualStore, otherGet, dbGet ])
+			.read('sas', opts)
+			.then(function (value) {
+				value.should.equal('spurs');
+
+				// cache
+				memoryStore.get('sas').should.equal('spurs');
+				otherMemoryStore.get('sas').should.equal('spurs');
+
+				// see virtualStore, since the callback is delayed
+				// sas should be null
+				(_.isUndefined(virtualStore.stores.sas)).should.be.true;
+			})
+			.catch(console.error)
+		})
 	})
 })
